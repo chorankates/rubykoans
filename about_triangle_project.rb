@@ -5,6 +5,10 @@ require 'triangle.rb'
 
 # optimize this?
 def triangle (a, b, c)
+  # find bad params
+  
+
+  # good cases
   if a == b and a ==c
     return :equilateral
   elsif (a == b and a != c) or (a == c and a !=b) or (b == c and b != a)
