@@ -3,6 +3,19 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # You need to write the triangle method in the file 'triangle.rb'
 require 'triangle.rb'
 
+# optimize this?
+def triangle (a, b, c)
+  if a == b and a ==c
+    return :equilateral
+  elsif (a == b and a != c) or (a == c and a !=b) or (b == c and b != a)
+    return :isosceles
+  elsif a != b and a != c and b != c
+    return :scalene
+  else
+    return :unknown
+  end
+end
+
 class AboutTriangleProject < EdgeCase::Koan
   def test_equilateral_triangles_have_equal_sides
     assert_equal :equilateral, triangle(2, 2, 2)
