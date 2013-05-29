@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/edgecase')
+require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 # Greed is a dice game where you roll up to five dice to accumulate
 # points.  The following "score" function will be used to calculate the
@@ -31,61 +31,9 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 def score(dice)
   # You need to write this method
-  points = 0;
-  
-  hash = Hash.new();
-  
-  if dice.size == 0
-    return 0
-  end
-  
-  for i in 0..dice.size
-    die = dice[i]
-    
-    # need to know how many of each
-    if hash[die]
-      hash[die] += 1
-    else
-      hash[die] = 1
-    end
-    
-  end
-
-  # if we have any number of 1's or 5's that is not 3, 100/50
-  for i in 0..dice.size
-    element = dice[i]
-    
-    # need to learn the pattern here
-    if element == 1 and hash[element] != nil and hash[element] != 3
-      points += 100
-    end
-    
-    if element == 5 and hash[element] != nil and hash[element] != 3
-      points += 50
-    end
-    
-  end
-  
-  # this is hack tastic.. really should be able to do this with a % calculation
-  points -= 150 if hash[5] == 4
-  
-  
-  for i in 0..6
-    if hash[i] != nil and hash[i] >= 3
-      if i == 1
-        points += 1000
-      else
-        points += 100 * i # this could be hash[i], but 
-      end
-    end
-  end
-  
-  #hash.each { |k,v| p "#{k} -->, #{v}" }
-  
-  return points
 end
 
-class AboutScoringProject < EdgeCase::Koan
+class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
     assert_equal 0, score([])
   end

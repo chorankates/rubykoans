@@ -12,13 +12,15 @@ require 'about_strings'
 require 'about_symbols'
 require 'about_regular_expressions'
 require 'about_methods'
+in_ruby_version("2") do
+  require 'about_keyword_arguments'
+end
 require 'about_constants'
 require 'about_control_statements'
 require 'about_true_and_false'
 require 'about_triangle_project'
 require 'about_exceptions'
-# commenting this out, when run the test directly, it passes, through path_to_enlightenment.rb, it fails
-#require 'about_triangle_project_2'
+require 'about_triangle_project_2'
 require 'about_iteration'
 require 'about_blocks'
 require 'about_sandwich_code'

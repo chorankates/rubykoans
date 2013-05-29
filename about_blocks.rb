@@ -1,6 +1,6 @@
-require File.expand_path(File.dirname(__FILE__) + '/edgecase')
+require File.expand_path(File.dirname(__FILE__) + '/neo')
 
-class AboutBlocks < EdgeCase::Koan
+class AboutBlocks < Neo::Koan
   def method_with_block
     result = yield
     result
@@ -8,12 +8,12 @@ class AboutBlocks < EdgeCase::Koan
 
   def test_methods_can_take_blocks
     yielded_result = method_with_block { 1 + 2 }
-    assert_equal 3, yielded_result
+    assert_equal __, yielded_result
   end
 
   def test_blocks_can_be_defined_with_do_end_too
     yielded_result = method_with_block do 1 + 2 end
-    assert_equal 3, yielded_result # this feels like perl saying => and , are the same.. it's true, but i'll never use do/end
+    assert_equal __, yielded_result
   end
 
   # ------------------------------------------------------------------
@@ -23,8 +23,8 @@ class AboutBlocks < EdgeCase::Koan
   end
 
   def test_blocks_can_take_arguments
-    result = method_with_block_arguments do |argument|
-      assert_equal "Jim", argument
+    method_with_block_arguments do |argument|
+      assert_equal __, argument
     end
   end
 
@@ -40,7 +40,7 @@ class AboutBlocks < EdgeCase::Koan
   def test_methods_can_call_yield_many_times
     result = []
     many_yields { |item| result << item }
-    assert_equal [:peanut, :butter, :and, :jelly], result
+    assert_equal __, result
   end
 
   # ------------------------------------------------------------------
@@ -54,8 +54,8 @@ class AboutBlocks < EdgeCase::Koan
   end
 
   def test_methods_can_see_if_they_have_been_called_with_a_block
-    assert_equal :with_block, yield_tester { :with_block }
-    assert_equal :no_block, yield_tester
+    assert_equal __, yield_tester { :with_block }
+    assert_equal __, yield_tester
   end
 
   # ------------------------------------------------------------------
@@ -63,41 +63,34 @@ class AboutBlocks < EdgeCase::Koan
   def test_block_can_affect_variables_in_the_code_where_they_are_created
     value = :initial_value
     method_with_block { value = :modified_in_a_block }
-    assert_equal :modified_in_a_block, value # any particular reason we're using symbols here?
-    
-    value = 'foo'
-    method_with_block { value = 'bar' }
-    assert_equal 'bar', value # just checking..
-    
+    assert_equal __, value
   end
 
   def test_blocks_can_be_assigned_to_variables_and_called_explicitly
-    add_one = lambda { |n| n + 1 } # i know what this is doing, need to work on the syntax
-    assert_equal 11, add_one.call(10)
+    add_one = lambda { |n| n + 1 }
+    assert_equal __, add_one.call(10)
 
     # Alternative calling sequence
-    assert_equal 11, add_one[10] # so lambda[], method()
+    assert_equal __, add_one[10]
   end
 
   def test_stand_alone_blocks_can_be_passed_to_methods_expecting_blocks
     make_upper = lambda { |n| n.upcase }
-    result = method_with_block_arguments(&make_upper) # this seems backwards to me.. shouldn't we be calling make_upper against method_with_block_arguments?
-    assert_equal "JIM", result 
+    result = method_with_block_arguments(&make_upper)
+    assert_equal __, result
   end
 
   # ------------------------------------------------------------------
-
-  # this is interesting..
 
   def method_with_explicit_block(&block)
     block.call(10)
   end
 
   def test_methods_can_take_an_explicit_block_argument
-    assert_equal 20, method_with_explicit_block { |n| n * 2 }
+    assert_equal __, method_with_explicit_block { |n| n * 2 }
 
     add_one = lambda { |n| n + 1 }
-    assert_equal 11, method_with_explicit_block(&add_one)
+    assert_equal __, method_with_explicit_block(&add_one)
   end
 
 end
