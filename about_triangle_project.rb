@@ -1,26 +1,9 @@
-require File.expand_path(File.dirname(__FILE__) + '/edgecase')
+require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 # You need to write the triangle method in the file 'triangle.rb'
-require 'triangle.rb'
+require './triangle'
 
-# optimize this?
-def triangle (a, b, c)
-  # find bad params
-  
-
-  # good cases
-  if a == b and a ==c
-    return :equilateral
-  elsif (a == b and a != c) or (a == c and a !=b) or (b == c and b != a)
-    return :isosceles
-  elsif a != b and a != c and b != c
-    return :scalene
-  else
-    return :unknown
-  end
-end
-
-class AboutTriangleProject < EdgeCase::Koan
+class AboutTriangleProject < Neo::Koan
   def test_equilateral_triangles_have_equal_sides
     assert_equal :equilateral, triangle(2, 2, 2)
     assert_equal :equilateral, triangle(10, 10, 10)
@@ -39,4 +22,3 @@ class AboutTriangleProject < EdgeCase::Koan
     assert_equal :scalene, triangle(5, 4, 2)
   end
 end
-
