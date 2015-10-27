@@ -14,7 +14,9 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  return :equilateral if a.eql?(b) and a.eql?(c)
+  return :isosceles if (a.eql?(b) and ! a.eql?(c)) or (a.eql?(c) and ! a.eql?(b)) or (b.eql?(c) and ! b.eql?(a))
+  :scalene
 end
 
 # Error class used in part 2.  No need to change this code.
