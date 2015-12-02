@@ -14,6 +14,8 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  raise TriangleError.new('all sides must have a length > 0') unless [a,b,c].select { |e| e <= 1 }.empty?
+
   return :equilateral if a.eql?(b) and a.eql?(c)
   return :isosceles if (a.eql?(b) and ! a.eql?(c)) or (a.eql?(c) and ! a.eql?(b)) or (b.eql?(c) and ! b.eql?(a))
   :scalene
